@@ -1,0 +1,16 @@
+*
+
+!.gitignore
+!CMakeLists.txt
+!LICENSE
+!README.md
+
+!src/
+!src/novoseiversia/
+!src/novoseiversia/shibal/
+!src/novoseiversia/shibal/main.cxx
+
+!include/
+!include/novoseiversia/
+!include/novoseiversia/shibal/
+!include/novoseiversia/shibal/.gitkeep

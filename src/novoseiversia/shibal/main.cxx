@@ -3,13 +3,31 @@
 
 #include <cstdlib>
 
-#include <iostream>
+#include <memory>
+
+#include "cli/clifilesession.h"
 
 
 
 auto main() -> int
 {
-	std::cout << "Hello, world!\n";
+	auto scheduler = std::make_unique<cli::Menu>("scheduler");
+
+
+
+	auto root = std::make_unique<cli::Menu>("shibal");
+
+	root->Insert(std::move(scheduler));
+
+
+
+	auto cli = cli::Cli(std::move(root));
+
+	auto session = cli::CliFileSession(cli);
+
+	session.Start();
+
+
 
 	return EXIT_SUCCESS;
 }

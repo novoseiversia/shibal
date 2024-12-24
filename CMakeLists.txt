@@ -10,6 +10,23 @@ project(
 
 
 
+add_executable(
+	${PROJECT_NAME}
+	"src/novoseiversia/shibal/main.cxx"
+)
+
+target_include_directories(${PROJECT_NAME} PRIVATE "include/")
+
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+
+if (MSVC)
+	target_compile_options(${PROJECT_NAME} PRIVATE "/W4" "/w14640" "/permissive-")
+else ()
+	target_compile_options(${PROJECT_NAME} PRIVATE "-Wall" "-Wextra" "-Wshadow" "-Wnon-virtual-dtor" "-Wpedantic")
+endif ()
+
+
+
 file(
 	DOWNLOAD
 	https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.4/CPM.cmake
@@ -19,18 +36,6 @@ file(
 
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 
+CPMAddPackage("gh:daniele77/cli@2.2.0")
 
-
-add_executable(
-	${PROJECT_NAME}
-	"src/novoseiversia/shibal/main.cxx"
-)
-
-target_include_directories(${PROJECT_NAME} PRIVATE "include/")
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-
-if (MSVC)
-	target_compile_options(${PROJECT_NAME} PRIVATE "/W4" "/w14640" "/permissive-")
-else ()
-	target_compile_options(${PROJECT_NAME} PRIVATE "-Wall" "-Wextra" "-Wshadow" "-Wnon-virtual-dtor" "-Wpedantic")
-endif ()
+target_link_libraries(${PROJECT_NAME} PRIVATE cli::cli)

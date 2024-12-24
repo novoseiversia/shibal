@@ -10,6 +10,17 @@ project(
 
 
 
+file(
+	DOWNLOAD
+	https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.4/CPM.cmake
+	${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
+	EXPECTED_HASH SHA256=67dcc1deb6e12a2f0705647ccc5f7023e3d15746b944e14352b82373e09b8a0a
+)
+
+include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
+
+
+
 add_executable(
 	${PROJECT_NAME}
 	"src/novoseiversia/shibal/main.cxx"
